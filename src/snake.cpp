@@ -39,8 +39,8 @@ void Snake::UpdateHead() {
   }
 
   // Wrap the Snake around to the beginning if going off of the screen.
-  head_x = fmod(head_x + grid_width, grid_width);
-  head_y = fmod(head_y + grid_height, grid_height);
+  //head_x = fmod(head_x + grid_width, grid_width);
+  //head_y = fmod(head_y + grid_height, grid_height);
 }
 
 void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) {
@@ -49,17 +49,24 @@ void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) 
 
   if (!growing) {
     // Remove the tail from the vector.
-    body.erase(body.begin());
+   // body.erase(body.begin());
   } else {
     growing = false;
     size++;
   }
 
   // Check if the snake has died.
-  for (auto const &item : body) {
-    if (current_head_cell.x == item.x && current_head_cell.y == item.y) {
+  if (current_head_cell.x == 0 || current_head_cell.x == grid_width - 1
+        || current_head_cell.y == 0 || current_head_cell.y == grid_height - 1) {
+      // Check if the snake has hit a grid border
       alive = false;
-    }
+  } else {
+      // Check if the snake has run into itself
+      for (auto const &item : body) {
+          if (current_head_cell.x == item.x && current_head_cell.y == item.y) {
+              alive = false;
+          }
+      }
   }
 }
 
