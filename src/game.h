@@ -17,7 +17,7 @@ class Game {
 
  private:
   Snake snake;
-  SDL_Point food;
+  SDL_Point power_up;
 
   std::random_device dev;
   std::mt19937 engine;
@@ -26,7 +26,7 @@ class Game {
 
   int score{0};
 
-  void PlaceFood();
+  void PlacePowerUp();
   void Update();
 };
 

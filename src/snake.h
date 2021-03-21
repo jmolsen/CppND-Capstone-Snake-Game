@@ -16,7 +16,7 @@ class Snake {
 
   void Update();
 
-  void GrowBody();
+  void SpeedUp();
   bool SnakeCell(int x, int y);
 
   Direction direction = Direction::kUp;
@@ -32,7 +32,7 @@ class Snake {
   void UpdateHead();
   void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell);
 
-  bool growing{false};
+  bool speeding_up{false};
   int grid_width;
   int grid_height;
 };
